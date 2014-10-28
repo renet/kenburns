@@ -4,7 +4,6 @@ Kenburns
  
 Example: <http://www.toymakerlabs.com/kenburns>
 
-
 Overview & Features
 -------------------
 Dude, another Jquery gallery? Wait, wait! Before you go, this one actually does a few pretty neat things: 
@@ -15,11 +14,9 @@ Dude, another Jquery gallery? Wait, wait! Before you go, this one actually does 
 * Loads images in parallel but maintains the gallery order
 * Built-in event callbacks for loading complete, and transition complete
 
-
 Browser Support
 -------
 Testing conducted in: ie8 +, Chrome 18.0.1025.165, Safari 5+6, Firefox 11, and iOS 5.
-
 
 Usage
 -------------------
@@ -32,7 +29,6 @@ Basic plugin use looks like this:
         fadeSpeed:800,
         ease3d:ease-out
     })
-
 
 Example
 ------------
@@ -89,9 +85,6 @@ Then initialize the plugin. In the example below, it should log the current slid
             console.log('image loading complete');
         }
     });
-    
-
-
 
 How it Works
 -------------------
@@ -99,7 +92,6 @@ How it Works
 The plugin loads images asynchronously, and in parallel. It uses a manager to maintain the order of the images as they are passed in the _**images**_ parameter. 
 
 The transition starts once the first image has loaded. If it encounters an image that hasn't loaded, the script pauses and shows a loading animation. When the image finishing loading, the transition resumes on its merry way. 
-
 
 ######Image Sizing & Animation
 The plugin moves the images by computing the difference between the dimensions of the image and the dimensions of the frame. It aligns the image with a random corner of the frame and animates it to another random corner. The relationship of the image size to the frame size dictates how much the images move.
@@ -118,10 +110,9 @@ The scale parameter scales the images down first, and increases it until it reac
 _Note: The plugin scales images **down** initially. The scaled image size must be at least equal to the size of the frame_ 
 
 **To work out the minimum wrapper size needed:** 
-    
+
     image width * scale
     image height * scale
-     
 
 List of Parameters
 -------------------
@@ -151,25 +142,22 @@ A public function that returns the index of the current slide.
 ######onLoadingComplete: _function()_
 A callback function when the images have finished loading. 
 
-
-
 Dependencies
 -----
-Jquery 1.8.2.
+jQuery 1.8.2+.
 
-It will probably work fine in previous versions but it hasn't yet been tested. 
-
+Tested with jQuery 1.8.2 and 2.1.1, but will probably work fine in previous versions, as well. 
 
 Credits
 ------
+by René Schubert
+<http://www.reneschubert.net>
+
+based on the Plugin
 by John the Toymaker<br/>
 John @ Toymakerlabs<br/>
 <http://www.toymakerlabs.com>
 
-Special thanks to: The [Jquery](http://www.jquery.com/) team and the [Jquery plugin boilerplate](http://jqueryboilerplate.com). And of course, as always, Stackoverflow and Google, and books, and greek-yogurt, and Boddingtons. And Crepevine.  
-
-
+Special thanks to: The [jQuery](http://www.jquery.com/) team and the [jQuery plugin boilerplate](http://jqueryboilerplate.com). And of course, as always, Stackoverflow and Google, and books, and greek-yogurt, and Boddingtons. And Crepevine.  
 
 *Note This plugin only draws stylistic inspiration and is in no way affiliated with or endorsed by filmmaker Ken Burns. 
-
-
