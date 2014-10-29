@@ -125,22 +125,25 @@ Array containing strings of image URLs
 Initial scaling of images. Value Range: 0-1. Produces a zooming effect when animating. Scaling images **down** initially allows us to transition them to their original sizes, therby eliminating any possible fuzziness.
     
 ######duration: _ms_
-Millisecond value representing the transition duration time. 
+Millisecond value representing the transition duration time.
 
 ######fadeSpeed: _ms_
-Millisecond value representing how long the transition will last *Note: The plugin adds fadeSpeed to duration to produce a nifty cross-fading effect. 
+Millisecond value representing how long the transition will last *Note: The plugin adds fadeSpeed to duration to produce a nifty cross-fading effect.
+
+######buffer: _integer_
+Amount of pictures being pre-loaded.
 
 ######ease3d: _'string'_
-Optional string value to control the easing of the transition. Accepts CSS3 easing functions like 'ease-out', 'ease-in-out', 'cubic-bezier()'
+Optional string value to control the easing of the transition. Accepts CSS3 easing functions like 'ease-out', 'ease-in-out', 'cubic-bezier()'.
 
 ######onSlideComplete: _function()_
-A callback when each slide completes its transition. Used for things like changing the text relating to the image, etc
+A callback when each slide completes its transition. Used for things like changing the text relating to the image, etc.
 
 ######getSlideIndex: _function()_
-A public function that returns the index of the current slide. 
+A public function that returns the index of the current slide.
 
 ######onLoadingComplete: _function()_
-A callback function when the images have finished loading. 
+A callback function when the images have finished loading.
 
 Dependencies
 -----
@@ -150,10 +153,10 @@ Tested with jQuery 1.8.2 and 2.1.1, but will probably work fine in previous vers
 
 Credits
 ------
-by René Schubert
+by René Schubert<br/>
 <http://www.reneschubert.net>
 
-based on the Plugin
+based on the Plugin<br/>
 by John the Toymaker<br/>
 John @ Toymakerlabs<br/>
 <http://www.toymakerlabs.com>
