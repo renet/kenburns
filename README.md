@@ -35,38 +35,15 @@ Example
 #####1. HTML
 First create a wrapper element. For movement to take place, the wrapper must be smaller than the smallest image multiplied by the scale. See the _**how it works**_ section for info on how to appropriately size your wrapper and images. 
 
-        <div id="kenburns_slideshow"></div>  
+        <div id="kenburns-slideshow"></div>  
     
 ######2. CSS
 Include the the CSS. The plugin wraps images in divs with a class of _.kb-slide_. _**Note**_: Position:relative on the IMG tag is used to defeat an IE8 opacity bug. 
 
-    #kenburns_slideshow {
-        position: relative;
-        width:600px;
-        height: 360px;
-        background-color:black;
-        border:22px solid #191919;
-        overflow: hidden;
-    }
-    
-    .kb-slide{
-        position: absolute;
-        z-index: 1;
-        opacity: 0;
-    }
-    
-    .kb-slide img{
-        position: relative;
-        -webkit-transform: translate3d(0,0,0)
-        -moz-transform: translate3d(0,0,0);
-        -webkit-backface-visibility: hidden;
-        -moz-backface-visibility: hidden;
-    }
-
 ######3. SCRIPT
 Then initialize the plugin. In the example below, it should log the current slide and a message when loading has completed. 
 
-    $("#wrapper").Kenburns({
+    var burns = $("#wrapper").kenburns({
         images:[
             "images/image0.jpg", 
             "images/image1.jpg",
@@ -86,33 +63,7 @@ Then initialize the plugin. In the example below, it should log the current slid
         }
     });
 
-How it Works
--------------------
-######Loading
-The plugin loads images asynchronously, and in parallel. It uses a manager to maintain the order of the images as they are passed in the _**images**_ parameter. 
-
-The transition starts once the first image has loaded. If it encounters an image that hasn't loaded, the script pauses and shows a loading animation. When the image finishing loading, the transition resumes on its merry way. 
-
-######Image Sizing & Animation
-The plugin moves the images by computing the difference between the dimensions of the image and the dimensions of the frame. It aligns the image with a random corner of the frame and animates it to another random corner. The relationship of the image size to the frame size dictates how much the images move.
-
-**Three parameters affect how much movement will happen during the transition:**
-
-1. ######Wrapper Size
-The element that you apply the plugin to serves as the "frame" for the images. For movement to occur, the images must be larger than the frame. If images are the same size as the wrapper, they will fade over one-another. 
-
-2. ######Image Size 
-The larger the image in relation to the frame, the larger the distance the image has to cover, and the more image will move. 
-
-3. ######Scale
-The scale parameter scales the images down first, and increases it until it reaches a value of 1. Keep in mind if you have set the scale parameter, the scaled image size must still be at least as large as the frame. Otherwise gaps may appear.
-
-_Note: The plugin scales images **down** initially. The scaled image size must be at least equal to the size of the frame_ 
-
-**To work out the minimum wrapper size needed:** 
-
-    image width * scale
-    image height * scale
+burns.pause() and burns.play() can now be used to pause and resume the slideshow.
 
 List of Parameters
 -------------------
