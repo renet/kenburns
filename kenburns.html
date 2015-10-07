@@ -5,8 +5,9 @@
 </head>
 <body>
 	<div id="kenburns-slideshow"></div>
-	<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
-	<script type="text/javascript" src="js/kenburns.js"></script>
+	<script src="js/jquery-1.8.2.min.js"></script>
+	<script src="js/jquery.transit.js"></script>
+	<script src="js/kenburns.js"></script>
 	
 	<script type="text/javascript">
 	$(document).ready(function() {
@@ -19,10 +20,17 @@
 	    		"images/image4.jpg",
 	    		"images/image5.jpg"
 	    	],
-	    	scale:0.75,
-	    	duration:4000,
-	    	fadeSpeed:1200
+		ease3d:'ease-out'
 	    });
+	    
+	    $('#kenburns-slideshow').click(function(){
+	   	if (burns.active){
+            		burns.pause();
+	        } else {
+	        	burns.play();
+	        }
+	    });
+	    
 	});
 	</script>
 </body>
