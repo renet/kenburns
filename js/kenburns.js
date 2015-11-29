@@ -23,7 +23,7 @@
 
 ;(function ($, window, document, undefined) {
     "use strict";
-    
+
     /*  Plugin Parameters
      ------------------------------------------------------------------------------------------------- */
     var pluginName = 'kenburns',
@@ -51,6 +51,7 @@
         this._name = pluginName;
         var images = this.options.images;
         this.maxSlides = images[images.length - 1] ? images.length : images.length - 1; // IE8 bug fix
+        this.currentSlide = 0;
         this.slidesLoaded,
         this.instanceId,
         this.init();
@@ -68,7 +69,7 @@
             list = that.options.images,
             buffer = that.options.buffer,
             $element = $(that.element);
-        
+    
         that.slidesLoaded = 0;
         that.instanceId = 0;
         that.width = $element.width();
@@ -83,7 +84,7 @@
                 if (i <= buffer) this.attachImage(list[i], "image" + i);
             }
         }
-        
+    
         that.options.onInitiated();
     };
 
@@ -98,9 +99,9 @@
      */
     Plugin.prototype.attachImage = function (url, alt_text) {
         var that = this;
-        
+    
         //put the image in an empty div to separate the animation effects of fading and moving
-        var $wrapper = $('<div/>', { class: 'kb-slide' }).css({'opacity':0});
+        var $wrapper = $('<div/>', { 'class': 'kb-slide' }).css({'opacity':0});
         var $img = $("<img />", { 
             src: url,
             alt: alt_text
@@ -148,20 +149,20 @@
     Plugin.prototype.checkLoadProgress = function () {
         return this.slidesLoaded == this.maxSlides;
     };
-    
+
     /**
      * Pauses the slideshow
      */
     Plugin.prototype.pause = function() {
         var that = this;
         this.active = false;
-
+    
         $('.kb-slide').css('z-index', 1).transition({
             opacity: 0,
             duration: that.options.fadeSpeed,
             easing: that.options.ease3d
         });
-        
+    
         clearTimeout(this.timeout);
     };
 
@@ -169,11 +170,10 @@
      * Resumes the paused slideshow
      */
     Plugin.prototype.play = function () {
-
         clearTimeout(this.timeout);
         // Increase instanceId to abort scheduled transitions
         this.instanceId++;
-        this.startTransition(this.currentSlide == this.maxSlides ? 0 : this.currentSlide );
+        this.startTransition(this.currentSlide == this.maxSlides ? 0 : this.currentSlide);
     };
 
     /**
@@ -217,10 +217,7 @@
         if (!that.checkLoadProgress()) that.bufferImage(that.currentSlide);
 
         //Check if the next slide is loaded. If not, wait.
-        if (!this.imagesArray[that.currentSlide].loaded) {
-            that.currentSlide = 0;
-            that.doTimeout();
-        } else {
+        if (this.imagesArray[that.currentSlide].loaded) {
             //if the next slide is loaded, go ahead and do the transition.
             that.transition3d();
             //Advance the current slide
@@ -329,7 +326,7 @@
     };
 
     Plugin.prototype.transitionOut = function (index, myInstanceId) {
-        
+    
         if (this.instanceId == myInstanceId){        
             var that = this,
                 image = this.imagesArray[index].element;
